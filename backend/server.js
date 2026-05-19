@@ -15,8 +15,17 @@ const adminRoutes  = require('./src/routes/admin.routes');
 const app = express();
 
 app.use(helmet());
+// Support comma-separated list: FRONTEND_URL=https://abc.vercel.app,https://abcelectronics.market
+const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
+  .split(',')
+  .map((o) => o.trim());
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, cb) => {
+    // allow server-to-server (no origin) and listed origins
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    cb(new Error(`CORS: ${origin} not allowed`));
+  },
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));

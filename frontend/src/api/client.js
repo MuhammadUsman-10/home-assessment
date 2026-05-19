@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+// In production (Vercel) VITE_API_URL = https://your-backend.onrender.com/api
+// In development the Vite proxy handles /api → localhost:6000
+const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: BASE_URL,
   withCredentials: true, // send cookies for refresh token
 });
 
@@ -38,7 +42,7 @@ api.interceptors.response.use(
 
       isRefreshing = true;
       try {
-        const { data } = await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+        const { data } = await axios.post(`${BASE_URL}/auth/refresh`, {}, { withCredentials: true });
         const newToken = data.accessToken;
         localStorage.setItem('accessToken', newToken);
         refreshQueue.forEach(({ resolve }) => resolve(newToken));
