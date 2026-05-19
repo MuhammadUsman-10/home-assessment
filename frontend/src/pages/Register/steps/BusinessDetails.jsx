@@ -114,7 +114,7 @@ export default function BusinessDetails({ data, onNext, onBack }) {
 
       <div style={{ display: 'flex', gap: 12 }}>
         <button type="button" className="btn btn-ghost" onClick={onBack} style={{ flex: 1 }}>← Back</button>
-        <button type="button" className="btn btn-primary" onClick={submit} style={{ flex: 2 }}>Continue to Storefront →</button>
+        <button type="button" className="btn btn-primary" onClick={submit} style={{ flex: 1 }}>Continue →</button>
       </div>
     </div>
   );

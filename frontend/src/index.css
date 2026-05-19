@@ -277,11 +277,23 @@ tbody tr:hover td { background: rgba(255,255,255,0.02); color: var(--text-primar
 .gap-6 { gap: 24px; }
 .w-full { width: 100%; }
 
+/* ── Progress Bar label variants ───────────────────────────────── */
+.progress-label-short { display: none; }
+.progress-label-full  { display: inline; }
+
 /* ── Responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
   .card { padding: 20px 16px; }
   .container { padding: 0 16px; }
+
+  /* ── Registration wizard ─── */
+  /* Progress bar: show short labels, hide full labels on mobile */
+  .progress-label-full { display: none; }
+  .progress-label-short { display: inline; }
+
+  /* Back/next button rows in steps wrap gracefully */
+  .step-actions { flex-wrap: wrap; }
 
   /* ── Seller Dashboard layout ─── */
   .dashboard-layout {

@@ -105,7 +105,7 @@ export default function SellerRegister() {
           <p style={{ color: 'var(--text-muted)', fontSize: 14 }}>Seller Registration Portal</p>
         </div>
 
-        <div className="glass" style={{ padding: '40px 48px' }}>
+        <div className="glass" style={{ padding: 'clamp(20px, 5vw, 40px) clamp(16px, 5vw, 48px)' }}>
           <ProgressBar current={step} />
 
           <AnimatePresence mode="wait" custom={dir}>

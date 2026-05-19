@@ -5,9 +5,9 @@ import { Shield, ChevronDown, ChevronUp } from 'lucide-react';
 function SummaryRow({ label, value }) {
   if (!value) return null;
   return (
-    <div style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-      <span style={{ color: 'var(--text-muted)', fontSize: 13, minWidth: 160 }}>{label}</span>
-      <span style={{ color: 'var(--text-primary)', fontSize: 13, flex: 1, wordBreak: 'break-word' }}>{value}</span>
+    <div style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid var(--border)', flexWrap: 'wrap' }}>
+      <span style={{ color: 'var(--text-muted)', fontSize: 13, minWidth: 110, flexShrink: 0 }}>{label}</span>
+      <span style={{ color: 'var(--text-primary)', fontSize: 13, flex: 1, wordBreak: 'break-word', minWidth: 0 }}>{value}</span>
     </div>
   );
 }
@@ -90,8 +90,8 @@ export default function ReviewSubmit({ data, onBack, onSubmit, loading }) {
       </label>
       {tcError && <p className="form-error" style={{ marginBottom: 12 }}>⚠ {tcError}</p>}
 
-      {/* reCAPTCHA v2 checkbox */}
-      <div style={{ marginBottom: 12 }}>
+      {/* reCAPTCHA v2 checkbox — scale down on very narrow screens to avoid overflow */}
+      <div style={{ marginBottom: 12, maxWidth: '100%', overflowX: 'auto' }}>
         <ReCAPTCHA
           ref={recaptchaRef}
           sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}
@@ -102,9 +102,9 @@ export default function ReviewSubmit({ data, onBack, onSubmit, loading }) {
       </div>
       {captchaError && <p className="form-error" style={{ marginBottom: 12 }}>⚠ {captchaError}</p>}
 
-      <div style={{ display: 'flex', gap: 12 }}>
-        <button type="button" className="btn btn-ghost" onClick={onBack} style={{ flex: 1 }} disabled={loading}>← Back</button>
-        <button type="button" className="btn btn-primary" onClick={handleSubmit} style={{ flex: 2 }} disabled={loading}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <button type="button" className="btn btn-ghost" onClick={onBack} style={{ flex: '1 1 100px' }} disabled={loading}>← Back</button>
+        <button type="button" className="btn btn-primary" onClick={handleSubmit} style={{ flex: '2 1 160px' }} disabled={loading}>
           {loading ? <><div className="spinner" style={{ width: 16, height: 16 }} /> Submitting...</> : '🚀 Submit Application'}
         </button>
       </div>

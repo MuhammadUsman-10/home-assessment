@@ -65,7 +65,7 @@ export default function AccountInfo({ data, onNext }) {
         <PasswordInput id="confirmPassword" label="Confirm Password" register={register('confirmPassword')} error={errors.confirmPassword?.message} />
       </div>
       <button type="submit" className="btn btn-primary btn-full">
-        Continue to Business Details →
+        Continue →
       </button>
     </form>
   );
